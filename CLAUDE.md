@@ -17,6 +17,11 @@ pip install pandas mcp requests
 | `LOSEIT_EMAIL` | Yes | Your Lose It! account email |
 | `LOSEIT_PASSWORD` | Yes | Your Lose It! account password |
 | `LOSEIT_DB` | No | Path to SQLite database (default: `./loseit.db`) |
+| `LOSEIT_BEARER_TOKENS` | No | Comma-separated bearer tokens. When set, all SSE/HTTP requests must include `Authorization: Bearer <token>`. **Strongly recommended for any remote deployment.** |
+| `LOSEIT_TIMEZONE` | No | IANA timezone for `current_date` (default: `America/New_York`) |
+| `LOSEIT_TRANSPORT` | No | `stdio` (local), `sse`, or `streamable-http` (default: `sse`) |
+| `LOSEIT_HOST` | No | Bind host (default: `0.0.0.0`) |
+| `LOSEIT_PORT` | No | Bind port (default: `8000`) |
 
 ## Running the Server
 
@@ -39,6 +44,26 @@ claude mcp add loseit -- python src/server.py
 | `query` | Run a read-only SELECT query against the database |
 | `list_tables` | Show all tables and row counts |
 | `last_sync` | Show when the last sync occurred |
+
+## Authentication
+
+For local stdio use, no auth is needed. For any remote deployment, set
+`LOSEIT_BEARER_TOKENS` to one or more random tokens:
+
+```bash
+TOKEN=$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')
+LOSEIT_BEARER_TOKENS="$TOKEN" python src/server.py
+```
+
+Then register clients with the token as a header:
+
+```bash
+claude mcp add --transport http loseit https://your-url/mcp \
+  --header "Authorization: Bearer $TOKEN"
+```
+
+Without a token, the server logs a warning and runs **open** — anyone with the
+URL can read your data and trigger syncs.
 
 ## How Sync Works
 
