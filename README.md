@@ -87,4 +87,6 @@ GROUP BY name ORDER BY times_logged DESC LIMIT 10;
 
 - Credentials are read from environment variables only, never written to disk
 - The `query` tool only allows SELECT (no writes, no DDL)
-- When exposing remotely, the tunnel URL is the only access control — anyone with the URL can read your data and trigger syncs. Add a reverse proxy with bearer-token auth before sharing
+- For remote deployments, set `LOSEIT_BEARER_TOKENS` (comma-separated) — every SSE / streamable-HTTP request must then include `Authorization: Bearer <token>` or it gets 401. Generate one with `python3 -c 'import secrets; print(secrets.token_urlsafe(32))'`
+- When `LOSEIT_BEARER_TOKENS` is unset the server logs a warning and runs **open** — only safe for local stdio or a trusted local network
+- Register clients with the token: `claude mcp add --transport http loseit https://your-url/mcp --header "Authorization: Bearer $TOKEN"`
