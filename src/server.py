@@ -23,6 +23,14 @@ PORT = int(os.environ.get("LOSEIT_PORT", "8000"))
 TRANSPORT = os.environ.get("LOSEIT_TRANSPORT", "sse")  # "stdio" for local, "sse" for remote
 TIMEZONE = os.environ.get("LOSEIT_TIMEZONE", "America/New_York")
 TZ = ZoneInfo(TIMEZONE)
+# Comma-separated list of bearer tokens that authorize SSE / streamable-http
+# requests.  When unset, the server is open (suitable only for stdio or a
+# trusted local network).
+BEARER_TOKENS = {
+    t.strip()
+    for t in os.environ.get("LOSEIT_BEARER_TOKENS", "").split(",")
+    if t.strip()
+}
 
 
 def _local_today() -> str:
@@ -453,6 +461,62 @@ def last_sync() -> str:
 # Entrypoint
 # ---------------------------------------------------------------------------
 
+class BearerTokenMiddleware:
+    """Reject requests that lack a valid bearer token, when tokens are configured."""
+
+    def __init__(self, app, tokens: set[str]) -> None:
+        self.app = app
+        self.tokens = tokens
+
+    async def __call__(self, scope, receive, send) -> None:
+        if scope["type"] != "http" or not self.tokens:
+            await self.app(scope, receive, send)
+            return
+
+        headers = {k.decode().lower(): v.decode() for k, v in scope.get("headers", [])}
+        auth = headers.get("authorization", "")
+        token = auth[7:] if auth.lower().startswith("bearer ") else ""
+        if token not in self.tokens:
+            await send({
+                "type": "http.response.start",
+                "status": 401,
+                "headers": [
+                    (b"www-authenticate", b'Bearer realm="loseit"'),
+                    (b"content-type", b"application/json"),
+                ],
+            })
+            await send({
+                "type": "http.response.body",
+                "body": b'{"error":"unauthorized","message":"Valid bearer token required"}',
+            })
+            return
+
+        await self.app(scope, receive, send)
+
+
+def _run_http_with_auth() -> None:
+    """Run streamable-http or SSE transport with bearer-token middleware."""
+    import uvicorn
+
+    if TRANSPORT == "streamable-http":
+        app = mcp.streamable_http_app()
+    elif TRANSPORT == "sse":
+        app = mcp.sse_app()
+    else:
+        raise ValueError(f"Unsupported transport for HTTP auth: {TRANSPORT}")
+
+    if BEARER_TOKENS:
+        app = BearerTokenMiddleware(app, BEARER_TOKENS)
+        log.info("Bearer-token auth enabled (%d token(s))", len(BEARER_TOKENS))
+    else:
+        log.warning("LOSEIT_BEARER_TOKENS not set — server is OPEN to anyone with the URL")
+
+    uvicorn.run(app, host=HOST, port=PORT, log_level="info")
+
+
 if __name__ == "__main__":
     log.info("Starting LoseIt MCP server on %s:%d (transport=%s)", HOST, PORT, TRANSPORT)
-    mcp.run(transport=TRANSPORT)
+    if TRANSPORT in ("sse", "streamable-http"):
+        _run_http_with_auth()
+    else:
+        mcp.run(transport=TRANSPORT)
