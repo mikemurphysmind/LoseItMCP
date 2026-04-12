@@ -5,6 +5,13 @@
     "ghcr.io/wandb/catnip/feature:1": {}
   },
   "forwardPorts": [
-    6369
-  ]
+    6369,
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "LoseIt MCP Server",
+      "visibility": "public"
+    }
+  }
 }
