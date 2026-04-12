@@ -1,5 +1,7 @@
 # LoseItMCP
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 An [MCP](https://modelcontextprotocol.io) server that pulls your nutrition, fitness, and body metrics from [Lose It!](https://loseit.com) into a local SQLite database — so you (or any LLM) can query years of food logs, weight, macros, exercise, sleep, and more with plain SQL.
 
 ## Features
@@ -90,3 +92,7 @@ GROUP BY name ORDER BY times_logged DESC LIMIT 10;
 - For remote deployments, set `LOSEIT_BEARER_TOKENS` (comma-separated) — every SSE / streamable-HTTP request must then include `Authorization: Bearer <token>` or it gets 401. Generate one with `python3 -c 'import secrets; print(secrets.token_urlsafe(32))'`
 - When `LOSEIT_BEARER_TOKENS` is unset the server logs a warning and runs **open** — only safe for local stdio or a trusted local network
 - Register clients with the token: `claude mcp add --transport http loseit https://your-url/mcp --header "Authorization: Bearer $TOKEN"`
+
+## License
+
+Released under the [MIT License](./LICENSE).
