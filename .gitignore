@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+loseit.db
+loseit.db-shm
+loseit.db-wal
+.env
