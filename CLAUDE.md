@@ -139,3 +139,16 @@ GROUP BY name ORDER BY times_logged DESC LIMIT 10;
 SELECT date, weight FROM weights
 WHERE deleted = 'false' ORDER BY date DESC LIMIT 30;
 ```
+
+## Coaching Memory — TDEE Estimation
+
+When estimating the user's TDEE, ALWAYS compute all **four** methods and report their **average** as the working number:
+
+1. **Lose It EER** — from the `profile` table (`Current EER`).
+2. **Mifflin-St Jeor** — BMR = 10·kg + 6.25·cm − 5·age + 5, then × activity multiplier.
+3. **Katch-McArdle** — BMR = 370 + 21.6·LBM(kg), then × activity multiplier. LBM = weight × (1 − body_fat%); pull body fat from the `body_fat` table.
+4. **Back-calculated (real-world)** — avg logged `food_cals` + (weight change in lb × 3500 ÷ days) over a multi-week window. This is the ground-truth method.
+
+For the two formula methods, use the activity multiplier that best matches the back-calculated value — currently **~1.55** ("daily / intense 3–4×/week"), i.e. one level BELOW raw activity, because the higher multipliers over-credit very active people (activity is compensated and already priced into maintenance).
+
+Report the **average of the four**. As of 2026-07 (age 57, 5'11", ~220 lb, ~30% BF): Lose It 2,972 · Mifflin 2,860 · Katch-McArdle 2,912 · real-data 2,870 → **average ≈ 2,900 cal/day**. Recompute whenever weight, body fat, or activity change materially, and re-anchor the multiplier to the latest back-calculated value.
