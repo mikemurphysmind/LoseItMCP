@@ -152,3 +152,7 @@ When estimating the user's TDEE, ALWAYS compute all **four** methods and report 
 For the two formula methods, use the activity multiplier that best matches the back-calculated value — currently **~1.55** ("daily / intense 3–4×/week"), i.e. one level BELOW raw activity, because the higher multipliers over-credit very active people (activity is compensated and already priced into maintenance).
 
 Report the **average of the four**. As of 2026-07 (age 57, 5'11", ~220 lb, ~30% BF): Lose It 2,972 · Mifflin 2,860 · Katch-McArdle 2,912 · real-data 2,870 → **average ≈ 2,900 cal/day**. Recompute whenever weight, body fat, or activity change materially, and re-anchor the multiplier to the latest back-calculated value.
+
+## Coaching Memory — Metrics Tracked in Reviews
+
+- **Daily water intake** (`water_intake` table, fluid ounces). User committed 2026-07 to logging one daily total. Target **~100 oz/day**, +20–30 oz on heavy cardio (long hikes/rides) or hot days. Historically logged only sparsely (5 days in 2026) — flag if logging lapses again, and read it as habit adherence, not calorie math (water doesn't affect the deficit). Relevant to fiber efficacy, regularity, cardio recovery, and blood pressure.
