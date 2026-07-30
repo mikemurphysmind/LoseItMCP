@@ -151,7 +151,17 @@ When estimating the user's TDEE, ALWAYS compute all **four** methods and report 
 
 For the two formula methods, use the activity multiplier that best matches the back-calculated value — currently **~1.55** ("daily / intense 3–4×/week"), i.e. one level BELOW raw activity, because the higher multipliers over-credit very active people (activity is compensated and already priced into maintenance).
 
-Report the **average of the four**. As of 2026-07 (age 57, 5'11", ~220 lb, ~30% BF): Lose It 2,972 · Mifflin 2,860 · Katch-McArdle 2,912 · real-data 2,870 → **average ≈ 2,900 cal/day**. Recompute whenever weight, body fat, or activity change materially, and re-anchor the multiplier to the latest back-calculated value.
+Report the **average of the four**. As of 2026-07 (age 57, 5'11", ~30% BF): Lose It 2,972 · Mifflin 2,860 · Katch-McArdle 2,912 · real-data 2,870 → **average ≈ 2,900 cal/day** (working number). Recompute whenever weight, body fat, or activity change materially, and re-anchor the multiplier to the latest back-calculated value. NOTE: short-window (<3 wk) back-calcs read high when scale weight includes water clearing after a blowout — prefer long-window data and treat ~2,900 as the anchor until a clean multi-week deficit confirms otherwise.
+
+## Coaching Memory — Body Composition & Current Status
+
+- **Current weight (as of 2026-07-29): ~217.7 lb 7-day avg** (single-day low 215.9); down ~5 lb from the ~222 plateau. **Goal 200 lb**, on track ~mid-October at ~1.5 lb/wk.
+- **Track the 7-day weight average, not single days** — daily weight swings ±2–3 lb with sodium/carbs/alcohol (esp. after weekend/Friday overages). Water clears over 2–3 days; a post-blowout spike is not fat.
+- **BIA body fat is unreliable short-term — trust the weight trend over it.** It's hydration-sensitive and can swing 2–3 pts on measurement conditions. Example: 2026-07-26 BF reading jumped 29.7% → 32.5% *while* weight dropped ~5 lb — physiologically impossible (can't lose scale weight and gain fat% on high protein + lifting), i.e. a pure artifact. Use BIA BF only as a slow multi-week trend, never a single reading.
+
+## Coaching Memory — Training Balance (recurring flag)
+
+- **Persistent imbalance: shoulders over-trained, rear delts + quads under-trained.** Across multiple reviews shoulders sit ~14–16 work sets/wk (his #1, already maximized) while rear delts ~3/wk (minimal) and quads ~6–8/wk (maintenance). Standing recommendation: **redirect ~4–5 weekly sets from shoulders → rear delts + quads.** He tends to want *more* shoulder work — steer him to rear delts/face-pulls instead. Volume target: ~10–20 hard sets/muscle/wk, 2×/wk frequency.
 
 ## Coaching Memory — Metrics Tracked in Reviews
 
