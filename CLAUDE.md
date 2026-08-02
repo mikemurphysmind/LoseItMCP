@@ -155,7 +155,8 @@ Report the **average of the four**. As of 2026-07 (age 57, 5'11", ~30% BF): Lose
 
 ## Coaching Memory — Body Composition & Current Status
 
-- **Current weight (as of 2026-07-29): ~217.7 lb 7-day avg** (single-day low 215.9); down ~5 lb from the ~222 plateau. **Goal 200 lb**, on track ~mid-October at ~1.5 lb/wk.
+- **CUT START DATE: 2026-07-06** (not the Lose It profile's 04/01/2026). Apr 1 – Jul 5 was nominally a "cut" but intake ~2,770 vs ~2,900 maintenance = ~130 cal/day deficit, i.e. effectively maintenance; weight was flat (Apr 220.7, May 220.1, Jun 224.1). The real deficit began 2026-07-06. **Measure cut duration, diet fatigue, and diet-break timing from July 6.**
+- **Current weight (as of 2026-08-02): ~217.4 lb 7-day avg** (single-day low 215.9); down ~5 lb from the ~222.6 plateau. **Goal 200 lb**, on track ~mid-Oct to early Nov at ~1.3–1.8 lb/wk.
 - **Track the 7-day weight average, not single days** — daily weight swings ±2–3 lb with sodium/carbs/alcohol (esp. after weekend/Friday overages). Water clears over 2–3 days; a post-blowout spike is not fat.
 - **BIA body fat is unreliable short-term — trust the weight trend over it.** It's hydration-sensitive and can swing 2–3 pts on measurement conditions. Example: 2026-07-26 BF reading jumped 29.7% → 32.5% *while* weight dropped ~5 lb — physiologically impossible (can't lose scale weight and gain fat% on high protein + lifting), i.e. a pure artifact. Use BIA BF only as a slow multi-week trend, never a single reading.
 
